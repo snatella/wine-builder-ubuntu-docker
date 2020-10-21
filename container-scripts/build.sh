@@ -12,15 +12,27 @@ if [[ "$VERSION" == "" ]]; then
 fi
 
 echo "Checking for wine folder"
-if [[ ! -d "/build/wine-git" ]]; then
+if [[ ! -d "/build/wine-git/" ]]; then
     echo "Wine folder does not exist"
     exit 1
 fi
+
+echo "Checking for wine source"
+if [[ ! -e "/build/wine-git/configure" ]]; then
+    echo "Missing wine sources in /build/wine-git/"
+    exit 1
+fi
+
+echo "Clearing up from previous runs"
+
+rm -rf /build/{data64,data32}/{wine-cfg,build} /build/data32/wine-tools "/build/wine-runner-$VERSION/"
+rm -f "/build/wine-runner-$VERSION.tgz"
 
 echo "Creating folders"
 mkdir -p /build/{data64,data32}
 mkdir -p /build/{data64,data32}/{wine-cfg,build,ccache}
 mkdir -p /build/data32/wine-tools
+mkdir -p "/build/wine-runner-$VERSION/"
 
 echo "Setting up ccache"
 ccache -F 0 && ccache -M 0
@@ -34,7 +46,7 @@ cd /build/data64/wine-cfg
 
 make -j${build_cores} install
 
-cp -a /build/data64/build/* /build/wine-runner-$VERSION/
+cp -a /build/data64/build/* "/build/wine-runner-$VERSION/"
 
 echo "64bit build complete"
 
@@ -54,6 +66,16 @@ cd /build/data32/wine-cfg
 
 make -j${build_cores} install
 
-cp -a -n /build/data32/build/* /build/wine-runner-$VERSION/
+cp -a -n /build/data32/build/* "/build/wine-runner-$VERSION/"
 
 echo "32bit build complete"
+
+echo ""
+
+echo "Building /build/wine-runner-$VERSION.tgz"
+
+tar -C "/build/wine-runner-$VERSION/" --use-compress-program="pigz --best --recursive" -cf "/build/wine-runner-$VERSION.tgz" .
+rm -rf "/build/wine-runner-$VERSION/"
+
+echo ""
+echo "Wine build created 'build/wine-runner-$VERSION.tgz'"

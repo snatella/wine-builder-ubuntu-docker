@@ -1,8 +1,10 @@
-This is aimed at developers who want to build a bi-arch wine in the most compatible and platform independent way.
+This is aimed at developers who want to build a bi-arch wine in the most compatible and platform independent way, with the best build speed possible.
 
 If you wish to build this Dockerfile locally, `http_proxy` can be passed as an input parameter to greatly speed up the process/subsequent builds if you have a cache.
 
-_**Attention:** The below instructions do not work at this time_.
+_Where `$DIR` is this checked-out folder._
+
+This build uses `ccache` for faster re-builds (as `$DIR/build/ccache` once a build has been run). This can consume a lot of disk space over a few builds.
 
 Ensure you have a `wine-git` folder prepared (clone'd, patched etc) in `$DIR/build`, e.g. `$DIR/build/wine-git` and then use `docker run --rm -v $DIR/build/:/build/ molotovsh/wine-builder-ubuntu build.sh $VERSION`
 
