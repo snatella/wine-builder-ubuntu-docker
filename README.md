@@ -1,3 +1,5 @@
+_Currently completely untested._
+
 This is aimed at developers who want to build a bi-arch wine in the most compatible and platform independent way, with the best build speed possible.
 
 If you wish to build this Dockerfile locally, `http_proxy` can be passed as an input parameter to greatly speed up the process/subsequent builds if you have a cache.
