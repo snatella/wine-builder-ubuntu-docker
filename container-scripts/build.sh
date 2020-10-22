@@ -13,7 +13,7 @@ fi
 
 echo "Checking for wine folder"
 if [[ ! -d "/build/wine-git/" ]]; then
-    echo "Wine folder does not exist"
+    echo "Wine folder does not exist. Did you set the volume (-v) correctly?"
     exit 1
 fi
 
@@ -75,7 +75,8 @@ echo ""
 echo "Building /build/wine-runner-$VERSION.tgz"
 
 tar -C "/build/wine-runner-$VERSION/" --use-compress-program="pigz --best --recursive" -cf "/build/wine-runner-$VERSION.tgz" .
-rm -rf "/build/wine-runner-$VERSION/"
+chmod o+rw "/build/wine-runner-$VERSION.tgz"
+rm -rf /build/{data64,data32}/{wine-cfg,build} /build/data32/wine-tools "/build/wine-runner-$VERSION/"
 
 echo ""
 echo "Wine build created 'build/wine-runner-$VERSION.tgz'"
