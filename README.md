@@ -20,9 +20,12 @@ If you wish to build this Dockerfile locally, `http_proxy` can be passed as a `-
 
 1) Within your `build` subfolder of your current working directory, have a `wine-git` folder prepared within it (clone'd, patched etc) e.g. `$DIR/build/wine-git`
    - e.g. for a quick checkout of wine 5.16: `mkdir build; git clone --depth 1 --branch wine-5.16 https://github.com/wine-mirror/wine.git build/wine-git`
+
 2) Run `docker run --rm --env build_cores=$CORES -v $DIR/build/:/build/ molotovsh/wine-builder-ubuntu build.sh $VERSION`
    - `$DIR` must be populated or replaced with a full path or docker will (current versions) reject the volume mount
+
 3) Once done you should find `$DIR/build/wine-runner-$VERSION.tgz` with your build packaged in it.
+
 4) Occasionally run `docker pull molotovsh/wine-builder-ubuntu` to get the most recent version.
 
 This can take up to 8GB of disk in total, so beware of space usage. Once done in the rest of `$DIR/build` is expendable (or partially re-usable for quicker future builds).
