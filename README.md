@@ -4,6 +4,8 @@ _Currently completely untested._
 
 This is aimed at developers who want to build a bi-arch wine in the most compatible and platform independent way, with the best build speed possible.
 
+To this end it builds using Ubuntu 18.04 for best glibc compatibility.
+
 Docker or a docker compatible container system is required to make use of this.
 
 If you wish to build this Dockerfile locally, `http_proxy` can be passed as a `--build-arg` to greatly speed up the process/subsequent builds if you have a cache.
@@ -36,3 +38,24 @@ To get into the wine-builder container without having to run the build script:
 - `docker run --rm --env build_cores=$CORES -v $DIR/build/:/build/ -it molotovsh/wine-builder-ubuntu`
 
 (You can skip the build_cores and volume bind, but just remember to set them before you try a build).
+
+# Notes
+
+### I think I found a bug
+
+Please open an issue on Github throughly describing your setup, distro, docker version, console output, where you got your wine sources from etc.
+
+### I'd like a new feature or package included
+
+Please open an issue on Github describing your request.
+
+### I built a wine runner and game X doesn't work!
+
+So ultimately you may need to apply patches or pick a known compatible wine version. If you can get some known working sources, you could put them in `$DIR/build/wine-git/` and use them in a build of your own!
+
+### Do you accept PRs?
+
+Of course, but before you spend lots of time working on something I'd suggest you create an issue on Github to describe what you're thinking.
+
+I'm open to PRs that make the system more flexible or helper scripts that would setup git folders with particular wine sources.
+
