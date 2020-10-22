@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS BUILD64
+FROM ubuntu:19.10 AS BUILD64
 ENV build_cores 6
 ARG http_proxy
 ENV http_proxy=${http_proxy}
