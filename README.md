@@ -12,9 +12,9 @@ If you wish to build this Dockerfile locally, `http_proxy` can be passed as a `-
 
 - `$DIR` - this checked-out folder or a folder with a `build` subfolder, either:
   - set `$DIR` (e.g. `cd wine-builder-ubuntu; DIR=$(pwd)` or `mkdir wine-builder; cd wine-builder; DIR=$(pwd)`)
-  - replace `$DIR` in commands below with the path to said folder.
+  - or replace `$DIR` in commands below with the path to said folder.
 - `$VERSION` - a user (i.e. you) determined version string, typically the wine version like "5.16" but can be almost anything - **strong advice**: no spaces, special characters etc.
-- `$CORES` - the number of CPU cores you wish to use during build, your total threads + 1 will be fastest but could slow your system. If the parameter is skipped, the default is 6.
+- `$CORES` - the number of CPU cores you wish to use during build, your total threads + 1 will usually be fastest but could slow your system. If the parameter is skipped, the default is 6.
 
 1) Within your `build` subfolder of your current working directory, have a `wine-git` folder prepared within it (clone'd, patched etc) e.g. `$DIR/build/wine-git`
    - e.g. for a quick checkout of wine 5.16: `mkdir build; git clone --depth 1 --branch wine-5.16 https://github.com/wine-mirror/wine.git build/wine-git`
