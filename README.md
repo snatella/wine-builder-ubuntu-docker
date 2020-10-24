@@ -1,10 +1,8 @@
-_Currently completely untested._
-
 # Wine Builder - Ubuntu
 
 This is aimed at developers who want to build a bi-arch wine in the most compatible and platform independent way, with the best build speed possible.
 
-To this end it builds using Ubuntu 18.04 for best glibc compatibility.
+To this end it builds using Ubuntu 18.04 for best glibc compatibility. Wine 5.18-5.19 won't build on Ubuntu 18.04, use the 19.10 tag for these.
 
 Docker or a docker compatible container system is required to make use of this.
 
