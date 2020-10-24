@@ -12,7 +12,7 @@ if [[ "$VERSION" == "" ]]; then
 fi
 
 echo "Checking for wine folder"
-if [[ ! -d "/build/wine-git/" ]]; then
+if [[ ! -e "/build/wine-git/" ]]; then
     echo "Wine folder does not exist. Did you set the volume (-v) correctly?"
     exit 1
 fi
